@@ -29,8 +29,7 @@ class Auth extends BaseController
           return view('templates/header').view('templates/navbar').view('templates/switchTab',$data).view('pages/signin').view('templates/footer');
         }else {
           $session = session();
-          $session->set('name',$result['name']);
-          $session->set('email',$result['email']);
+          $session->set('id',$result['id']);
           return redirect()->to(base_url('/'));
         }
       }else {
@@ -97,8 +96,7 @@ class Auth extends BaseController
           'password'  => $hash,
         ]);
         $session = session();
-        $session->set('name',$name);
-        $session->set('email',$email);
+        $session->set('id',$model->getInsertID());
         return redirect()->to(base_url('/'));
       }
     }
